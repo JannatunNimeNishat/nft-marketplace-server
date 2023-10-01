@@ -1,14 +1,13 @@
 const express = require('express');
+const { getAllArtists, createArtists } = require('../controllers/artistsController');
 
-const Artists = require('../models/artists.model');
 
 const router = express.Router();
 
-
-router.get('/', async (req, res) => {
-    const allArtists = await Artists.find({});
-    res.send(allArtists);
-})
+// get all artists
+router.get('/', getAllArtists);
+//create many artists
+router.post('/', createArtists);
 
 
 module.exports = router;

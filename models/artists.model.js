@@ -26,11 +26,16 @@ const artistsSchema = mongoose.Schema({
         type: String,
         require: true,
     },
-    links: {
-        type: Object,
-        require: true,
-    },
-
+    links: [
+        {
+            website_link: String,
+            discord_link: String,
+            youtube_link: String,
+            tweeter_link: String,
+            instagram_link: String,
+        }
+    ],
+    
 })
 
 module.exports = mongoose.model('artists', artistsSchema)
