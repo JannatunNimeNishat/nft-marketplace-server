@@ -2,8 +2,15 @@ const express = require('express');
 
 const app = express();
 
+//router
+const artistRouter = require('./routes/artists.route'); 
+
 //mongodb connection
 require('./config/db')
+
+// routes
+app.use('/artists', artistRouter);
+
 
 
 app.get('/', (req, res) => {
