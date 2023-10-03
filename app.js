@@ -1,9 +1,12 @@
 const express = require('express');
-
-const app = express();
+const cors = require('cors');
 
 //router
-const artistRouter = require('./routes/artists.route'); 
+const artistRouter = require('./routes/artists.route');
+
+const app = express();
+app.use(cors());
+app.use(express.json());
 
 //mongodb connection
 require('./config/db')

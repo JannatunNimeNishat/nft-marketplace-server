@@ -1,18 +1,6 @@
-const Artists = require('../models/artists.model')
+const Artists = require('../models/artists.model');
 
 
-const getAllArtists = async (req, res) => {
-    try {
-        const allArtists = await Artists.find({});
-        if (allArtists) {
-            res.status(200).send(allArtists);
-        } else {
-            res.status(404).send({ message: 'data not found' });
-        }
-    } catch (error) {
-        res.status(500).send({ message: 'server error', error });
-    }
-}
 
 const createArtists = async (req, res) => {
     try {
@@ -122,4 +110,34 @@ const createArtists = async (req, res) => {
 }
 
 
-module.exports = { getAllArtists,createArtists };
+
+const getAllArtists = async (req, res) => {
+    try {
+        const allArtists = await Artists.find({});
+        if (allArtists) {
+            res.status(200).send(allArtists);
+        } else {
+            res.status(404).send({ message: 'data not found' });
+        }
+    } catch (error) {
+        res.status(500).send({ message: 'server error', error });
+    }
+}
+
+const getSingleArtist = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const artist = await Artists.findOne({ _id: id });
+        if (artist) {
+            res.status(200).send(artist);
+        } else {
+            res.status(404).send({ message: 'data not found' });
+        }
+    } catch (error) {
+        res.status(500).send({ message: 'server error', error });
+    }
+}
+
+
+
+module.exports = { getAllArtists, createArtists, getSingleArtist };
